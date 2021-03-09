@@ -49,7 +49,7 @@ jobs:
       - name: Install numba-dppy dependencies
         shell: bash -l {0}
         run: |
-          conda install numpy cython llvm-spirv llvmdev llvmlite spirv-tools sphinx sphinx_rtd_theme wheel
+          conda install numpy cython llvmdev llvmlite recommonmark sphinx sphinx_rtd_theme wheel
           ./install_numba.sh
           ./install_dpctl.sh
       - name: Build docs

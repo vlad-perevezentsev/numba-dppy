@@ -30,7 +30,8 @@ jobs:
         run: |
           sudo apt-get install intel-oneapi-mkl                \
                                intel-oneapi-mkl-devel          \
-                               intel-oneapi-dpcpp-cpp-compiler
+                               intel-oneapi-dpcpp-cpp-compiler \
+                               intel-opencl-icd
       # https://github.com/marketplace/actions/checkout
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -49,7 +50,7 @@ jobs:
       - name: Install numba-dppy dependencies
         shell: bash -l {0}
         run: |
-          conda install numpy cython cmake llvmdev llvmlite recommonmark sphinx sphinx_rtd_theme wheel
+          conda install numpy cython cmake conda-build llvmdev llvmlite recommonmark sphinx sphinx_rtd_theme wheel
           ./install_numba.sh
           ./install_dpctl.sh
       - name: Build docs

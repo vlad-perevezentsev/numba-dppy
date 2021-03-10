@@ -40,4 +40,4 @@ conda build conda-recipe/ --no-test -c ${ONEAPI_ROOT}/conda_channel
 
 # ls -lR /opt/intel/oneapi/intelpython/latest/conda-bld
 
-conda install /opt/intel/oneapi/intelpython/latest/conda-bld/linux-64/dpctl*
+conda install /usr/share/miniconda/envs/numba-dppy/conda-bld/linux-64/dpctl*

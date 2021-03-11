@@ -59,9 +59,16 @@ jobs:
           . /opt/intel/oneapi/setvars.sh
           ./0.builddoc.sh
         working-directory: docs
+      - name: Prepare master documentation
+        id: prepare-master-documentation
+        if: github.ref == 'refs/heads/main_dev'
+        run: |
+          TAG_NAME="current"
+          echo "::set-output name=dest_dir::${TAG_NAME}"
       # https://github.com/marketplace/actions/github-pages-action
       - name: Deploy docs
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: docs/_build/html/
+          commit_message: ${{ github.event.head_commit.message }}

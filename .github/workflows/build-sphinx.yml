@@ -53,24 +53,24 @@ jobs:
           conda install numpy cython cmake conda-build llvmdev llvmlite recommonmark sphinx sphinx_rtd_theme wheel
           ./install_numba.sh
           ./install_dpctl.sh
+      - name: Capture branch and tag
+        id: branch_name
+        run: |
+          echo "SOURCE_BRANCH=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+          echo "SOURCE_TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
       - name: Build docs
         shell: bash -l {0}
         run: |
           . /opt/intel/oneapi/setvars.sh
           ./0.builddoc.sh
         working-directory: docs
-      - name: Prepare master documentation
-        id: prepare-master-documentation
-        if: github.ref == 'refs/heads/main_dev'
-        run: |
-          TAG_NAME="current"
-          echo "::set-output name=dest_dir::${TAG_NAME}"
       # https://github.com/marketplace/actions/github-pages-action
-      - name: Deploy docs
+      - name: Deploy docs (Main)
+        if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           destination_dir : dev
           publish_dir: docs/_build/html/
           allow_empty_commit : true
-          full_commit_message: ${{ github.event.head_commit.message }}
+          commit_message: ${{ github.event.head_commit.message }}

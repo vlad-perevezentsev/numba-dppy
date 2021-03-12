@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main_dev
+      - release*
     tags:
       - '[0-9].+**'
 

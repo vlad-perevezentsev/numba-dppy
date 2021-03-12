@@ -58,7 +58,7 @@ jobs:
           git clone https://github.com/IntelPython/numba.git
           cd numba
           python setup.py develop
-          ../skripts/install_dpctl.sh
+          ../scripts/install_dpctl.sh
       - name: Capture branch and tag
         id: capture_tag
         run: |

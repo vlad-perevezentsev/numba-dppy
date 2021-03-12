@@ -54,11 +54,11 @@ jobs:
         shell: bash -l {0}
         run: |
           conda install numpy cython cmake conda-build llvmdev llvmlite recommonmark sphinx sphinx_rtd_theme wheel
-          ./0.env.sh
+          ./scripts/0.env.sh
           git clone https://github.com/IntelPython/numba.git
           cd numba
           python setup.py develop
-          ../install_dpctl.sh
+          ../skripts/install_dpctl.sh
       - name: Capture branch and tag
         id: capture_tag
         run: |

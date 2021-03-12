@@ -1,6 +1,7 @@
 #!/bin/bash
 
 THEDIR=$(dirname $(readlink -e ${BASH_SOURCE[0]}))
+ROOTDIR=$THEDIR/..
 
 # We can not use common setup script because
 # using Intel Python brakes build and run procedure
@@ -21,4 +22,4 @@ fi
 
 export DPCPPROOT=${ONEAPI_ROOT}/compiler/latest
 
-export PYTHONPATH=$PYTHONPATH:${THEDIR}
+export PYTHONPATH=$PYTHONPATH:${ROOTDIR}

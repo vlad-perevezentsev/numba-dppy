@@ -5,7 +5,6 @@ ROOTDIR=$BUILDDOCDIR/..
 
 cd $ROOTDIR
 . 0.env.sh
-git branch
 python setup.py develop
 
 cd $BUILDDOCDIR

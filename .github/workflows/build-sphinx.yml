@@ -79,7 +79,7 @@ jobs:
           allow_empty_commit : true
           commit_message: ${{ github.event.head_commit.message }}
       - name: Deploy docs (Next release)
-        if: startsWith(github.ref, 'refs/heads/release*')
+        if: startsWith(github.ref, 'refs/heads/release')
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

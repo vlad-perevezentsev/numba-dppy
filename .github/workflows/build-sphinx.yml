@@ -88,3 +88,21 @@ jobs:
           publish_dir: docs/_build/html/
           allow_empty_commit : true
           commit_message: ${{ github.event.head_commit.message }}
+      - name: Deploy docs (Next release)
+        if: github.ref == 'refs/heads/release*'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          destination_dir : next_release
+          publish_dir: docs/_build/html/
+          allow_empty_commit : true
+          commit_message: ${{ github.event.head_commit.message }}
+      - name: Deploy docs (Tags)
+        if: github.ref == 'refs/tags/'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          destination_dir : ${GITHUB_REF#refs/tags/}
+          publish_dir: docs/_build/html/
+          allow_empty_commit : true
+          commit_message: ${{ github.event.head_commit.message }}

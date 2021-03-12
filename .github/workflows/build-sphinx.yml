@@ -57,20 +57,11 @@ jobs:
           ./install_numba.sh
           ./install_dpctl.sh
       - name: Capture branch and tag
-        id: branch_name
+        id: capture_tag
         run: |
           echo "${GITHUB_REF#refs/heads/}"
           echo "${GITHUB_REF#refs/tags/}"
-      - name: Get the version
-        id: get_version
-        run: |
-          echo ::set-output name=VERSION::${GITHUB_REF#refs\/tags\//}
-          echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
-          echo "$VERSION"
-          echo "$SOURCE_TAG"
-        env:
-          VERSION: ${{ steps.get_version.outputs.VERSION }}
-          SOURCE_TAG: ${{ steps.get_version.outputs.SOURCE_TAG }}
+          echo ::set-output name=tag_number::${GITHUB_REF#refs/tags/}
       - name: Build docs
         shell: bash -l {0}
         run: |
@@ -101,7 +92,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          destination_dir : ${GITHUB_REF#refs/tags/}
+          destination_dir : ${{ steps.capture_tag.outputs.tag_number }}
           publish_dir: docs/_build/html/
           allow_empty_commit : true
           commit_message: ${{ github.event.head_commit.message }}

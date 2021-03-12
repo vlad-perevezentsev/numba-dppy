@@ -98,7 +98,7 @@ jobs:
           allow_empty_commit : true
           commit_message: ${{ github.event.head_commit.message }}
       - name: Deploy docs (Tags)
-        if: github.ref == 'refs/tags/'
+        if: github.ref == 'refs/tags/*'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

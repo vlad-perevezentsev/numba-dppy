@@ -58,16 +58,16 @@ jobs:
         run: |
           echo "${GITHUB_REF#refs/heads/}"
           echo "${GITHUB_REF#refs/tags/}"
-      - name: Prepare tags documentation
-        id: prepare-tags-documentation
+      - name: Get the version
+        id: get_version
         run: |
-          TAG_NAME="${GITHUB_REF##refs/tags/}"
-          TAGS = "${GITHUB_REF##refs/tags/*}"
-          echo "::set-output name=dest_dir::${TAG_NAME}"
-          echo "::set-output name=base_tag::${TAG_NAME}"
-          echo "::set-output name=tag_name::${TAG_NAME}-docs"
-          echo "$TAG_NAME"
-          echo "$TAGS"
+          echo ::set-output name=VERSION::${GITHUB_REF#refs\/tags\//}
+          echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
+          echo $VERSION
+          echo $SOURCE_TAG
+        env:
+          VERSION: ${{ steps.get_version.outputs.VERSION }}
+          SOURCE_TAG: ${{ steps.get_version.outputs.SOURCE_BRANCH }}
       - name: Build docs
         shell: bash -l {0}
         run: |

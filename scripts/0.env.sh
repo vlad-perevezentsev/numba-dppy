@@ -8,7 +8,7 @@ ROOTDIR=$THEDIR/..
 export ONEAPI_ROOT=/opt/intel/oneapi
 
 . ${ONEAPI_ROOT}/compiler/latest/env/vars.sh
-. ${ONEAPI_ROOT}/tbb/latest/env/vars.sh
+# . ${ONEAPI_ROOT}/tbb/latest/env/vars.sh
 
 export DPCPPROOT=${ONEAPI_ROOT}/compiler/latest
 

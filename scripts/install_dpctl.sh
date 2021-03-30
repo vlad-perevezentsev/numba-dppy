@@ -3,5 +3,9 @@
 THEDIR=$(dirname $(readlink -e ${BASH_SOURCE[0]}))
 
 . ${THEDIR}/0.env.sh
+# . /opt/intel/oneapi/setvars.sh
 
-conda install numpy cython cmake dpctl numba=0.52 llvmdev llvmlite recommonmark sphinx sphinx_rtd_theme wheel -c /opt/intel/oneapi/conda_channel
+git clone https://github.com/IntelPython/numba.git
+
+cd numba
+python setup.py develop

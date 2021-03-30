@@ -28,6 +28,9 @@ jobs:
       - name: Environment install
         run: |
           ${CONDA}/bin/conda create -n numba-dppy python=3.7
+      - name: Conda activate
+        shell: bash -l {0}
+        run: |
           source ${CONDA}/bin/activate numba-dppy
       - name: Conda info
         shell: bash -l {0}
@@ -40,6 +43,7 @@ jobs:
           conda install numpy cython cmake conda-build llvmdev llvmlite recommonmark sphinx sphinx_rtd_theme wheel
           ./scripts/0.env.sh
           conda install numba -c ${ONEAPI_ROOT}/conda_channel
+          conda list
           ./scripts/install_dpctl.sh
           python setup.py develop
       - name: Capture branch and tag

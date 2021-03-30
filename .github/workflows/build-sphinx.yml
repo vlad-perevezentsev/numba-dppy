@@ -46,12 +46,8 @@ jobs:
       - name: Install numba-dppy dependencies
         shell: bash -l {0}
         run: |
-          conda install numpy cython cmake conda-build llvmdev llvmlite recommonmark sphinx sphinx_rtd_theme wheel
           ./scripts/0.env.sh
-          conda install -c intel numba=0.52
-          conda list
-          ./scripts/install_dpctl.sh
-          python setup.py develop
+          conda install numpy cython cmake dpctl numba=0.52 llvmdev llvmlite recommonmark sphinx sphinx_rtd_theme wheel -c ${ONEAPI_ROOT}/conda_channel
       - name: Capture branch and tag
         id: capture_tag
         run: |
@@ -61,7 +57,7 @@ jobs:
       - name: Build docs
         shell: bash -l {0}
         run: |
-          . /opt/intel/oneapi/setvars.sh
+          ./scripts/0.env.sh
           conda info
           conda list
           cd docs && make clean $$ make html

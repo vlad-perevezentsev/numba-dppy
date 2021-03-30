@@ -48,7 +48,7 @@ jobs:
         run: |
           conda install numpy cython cmake conda-build llvmdev llvmlite recommonmark sphinx sphinx_rtd_theme wheel
           ./scripts/0.env.sh
-          conda install -c intel numba
+          conda install -c intel numba=0.52
           conda list
           ./scripts/install_dpctl.sh
           python setup.py develop

@@ -47,6 +47,8 @@ jobs:
         shell: bash -l {0}
         run: |
           ./scripts/0.env.sh
+          echo "${ONEAPI_ROOT}"
+          ls ${ONEAPI_ROOT}/conda_channel/
           conda install numpy cython cmake dpctl numba=0.52 llvmdev llvmlite recommonmark sphinx sphinx_rtd_theme wheel -c ${ONEAPI_ROOT}/conda_channel
       - name: Capture branch and tag
         id: capture_tag

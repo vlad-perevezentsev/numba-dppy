@@ -61,7 +61,6 @@ jobs:
       - name: Build docs
         shell: bash -l {0}
         run: |
-          . /opt/intel/oneapi/setvars.sh
           ./0.builddoc.sh
         working-directory: docs
       # https://github.com/marketplace/actions/github-pages-action

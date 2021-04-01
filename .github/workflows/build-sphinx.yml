@@ -2,7 +2,7 @@ name: Build Sphinx
 on:
   push:
     branches:
-      - main_dev_1
+      - main_dev
       - release*
     tags:
       - /[0-9]+(\.[0-9]+)*/

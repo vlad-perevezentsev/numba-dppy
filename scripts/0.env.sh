@@ -13,4 +13,3 @@ export ONEAPI_ROOT=/opt/intel/oneapi
 export DPCPPROOT=${ONEAPI_ROOT}/compiler/latest
 
 export PYTHONPATH=$PYTHONPATH:${ROOTDIR}
-

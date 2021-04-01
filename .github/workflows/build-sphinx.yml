@@ -51,7 +51,7 @@ jobs:
         shell: bash -l {0}
         run: |
           ./scripts/0.env.sh
-          conda install -c intel numba --override-channels
+          ./scripts/install_numba.sh
       - name: Capture branch and tag
         id: capture_tag
         run: |
@@ -61,6 +61,7 @@ jobs:
       - name: Build docs
         shell: bash -l {0}
         run: |
+          . /opt/intel/oneapi/setvars.sh
           ./0.builddoc.sh
         working-directory: docs
       # https://github.com/marketplace/actions/github-pages-action

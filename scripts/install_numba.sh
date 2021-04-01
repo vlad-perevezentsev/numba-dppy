@@ -3,7 +3,6 @@
 THEDIR=$(dirname $(readlink -e ${BASH_SOURCE[0]}))
 
 . ${THEDIR}/0.env.sh
-# . /opt/intel/oneapi/setvars.sh
 
 git clone https://github.com/IntelPython/numba.git
 

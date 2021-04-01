@@ -55,7 +55,7 @@ jobs:
       - name: Install numba-dppy
         shell: bash -l {0}
         run: |
-          . /opt/inte/oneapi/setvars.sh
+          . /opt/intel/oneapi/setvars.sh
           python setup.py develop
       - name: Capture branch and tag
         id: capture_tag

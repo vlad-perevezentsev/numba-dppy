@@ -52,6 +52,11 @@ jobs:
         run: |
           ./scripts/0.env.sh
           ./scripts/install_numba.sh
+      - name: Install numba-dppy
+        shell: bash -l {0}
+        run: |
+          ./scripts/0.env.sh
+          python setup.py develop
       - name: Capture branch and tag
         id: capture_tag
         run: |
@@ -61,9 +66,10 @@ jobs:
       - name: Build docs
         shell: bash -l {0}
         run: |
-          . /opt/intel/oneapi/setvars.sh
-          ./0.builddoc.sh
-        working-directory: docs
+          ./scripts/0.env.sh
+          make clean
+          make html
+        working-directory: ./docs
       # https://github.com/marketplace/actions/github-pages-action
       - name: Deploy docs (Main)
         if: github.ref == 'refs/heads/main'
